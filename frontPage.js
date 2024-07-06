@@ -3,13 +3,13 @@ import { renderQuestion, renderAnswer, renderMainDiv,worldData, scienceData ,geo
 export function frontHeader() {
   var frontPageContent = `<header class="frontHeader">
                                     <div class='leftHeader'>
-                                        <p>Trivia Quiz</p>
+                                        <p>Trivia Quiz<span class="byMayank"> by Mayank Verma</span></p>
                                         <li><a href="" class='homeAnchor'>Home</a></li>
-                                        <li><a href="#">Leaderboards</a></li>
-                                        <li><a href="#">About</a></li>
+                                        <li class='leaderboardLi'><a href="#">Leaderboards</a></li>
+                                        <li class='aboutLi'><a href="#">About</a></li>
+                                        <li><a href="javascript:void(0)" class='quizListAnchor'>Quiz Lists</a></li>
                                         </div> 
-                                        <div class="rightHeader">
-                                        <li><a href="">Quiz Lists</a></li>
+                                        
                                     </div>
                             </header>
                             <div class="frontHeaderMainDiv">    
@@ -36,7 +36,14 @@ export function frontHeader() {
   playNowButton.addEventListener("click", function (event) {
     showCategory();
   });
+  document.querySelector('.quizListAnchor').addEventListener('click',function(){
+    event.preventDefault();
+    console.log('clicked');
+    showCategory();
+  });
 }
+
+
 
 function showCategory() {
   var frontHeaderMainDiv = document.querySelector(".frontHeaderMainDiv");
@@ -69,7 +76,7 @@ function showCategory() {
       renderAnswer(VocabularyData,0);
     });
 
-
+    
   }, 200);
 }
 

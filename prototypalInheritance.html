@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function MarineAnimals(){}
+
+        MarineAnimals.prototype.breathe  = function(){
+            console.log('All can Swim');
+        }
+
+        
+        function Fish(name){
+            this.name = name;
+        }
+        
+
+        Fish.prototype = Object.create(MarineAnimals.prototype);
+        Fish.prototype.constructor = MarineAnimals;
+        
+        Fish.prototype.breathe = function(){
+            console.log(`${this.name} breathe throuh gills`);
+        }
+        var tuna = new Fish('Tuna');
+        console.log(tuna);
+
+    </script>
+</body>
+</html>

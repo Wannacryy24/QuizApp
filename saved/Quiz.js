@@ -1,5 +1,4 @@
 export { renderQuestion, renderAnswer, renderMainDiv, worldData, scienceData ,geographyData ,VocabularyData};
-import { navigate } from "./router";
 const worldData = [
   {id:'world1',question: "What is the capital of France?",answers: [{ text: "Paris", correct: true },{ text: "London", correct: false },{ text: "Rome", correct: false },{ text: "Berlin", correct: false },],},
   {id:'world2',question: "Who wrote 'Hamlet'?", answers: [{ text: "William Shakespeare", correct: true },{ text: "Charles Dickens", correct: false },{ text: "J.K. Rowling", correct: false },{ text: "Leo Tolstoy", correct: false },],},
@@ -49,18 +48,8 @@ var VocabularyData=[
       {id:'vocabulary11', question: "The audience roared with laughter as the comedian delivered his hilarious jokes. What was the reaction of the audience?", answers: [ { text: "They were bored and silent", correct: false }, { text: "They were confused", correct: false }, { text: "They found it very funny", correct: true }, { text: "They left the theater", correct: false }, ], }
 ];
 
-const quizDataMap = {
-  worldQuiz: worldData,
-  scienceQuiz: scienceData,
-  GeographyQuiz: geographyData,
-  VocabularyQuiz: VocabularyData,
-};
-
 var score = 0;
 var selectedAnswers = [];
-var currentQuiz = '';
-var currentIndex = 0;
-
 function renderMainDiv() {
   var appDiv = document.querySelector("#app");
   appDiv.innerHTML = "";
@@ -72,19 +61,16 @@ function renderMainDiv() {
   mainDiv.appendChild(questionDiv);
 }
 
-function renderQuestion(quizType, index) {
-  var quizData = quizDataMap[quizType];
+function renderQuestion(quizData, index) {
   var questionDiv = document.querySelector(".questionDiv");
   if (index < quizData.length) {
     questionDiv.textContent = quizData[index].question;
   } else {
     questionDiv.textContent = ``;
   }
-  currentIndex = index; 
 }
 
-function renderAnswer(quizType, index) {
-  var quizData = quizDataMap[quizType];
+function renderAnswer(quizData, index) {
   var answerDiv = document.createElement("div");
   answerDiv.classList.add("answerDiv");
   var mainDiv = document.querySelector(".mainDiv");
@@ -93,16 +79,17 @@ function renderAnswer(quizType, index) {
   if (index < quizData.length) {
     createAnswerButtons(quizData, index);
 
-    createNextButton(quizType, quizData, index, answerDiv, mainDiv);
+    createNextButton(quizData, index, answerDiv, mainDiv);
 
-    createPreviousButton(quizType, quizData, index, answerDiv, mainDiv);
+    createPreviousButton(quizData, index, answerDiv, mainDiv);
   } else {
+
     answerDiv.textContent = "Your Score IS:" + score;
   }
 }
 
 function createAnswerButtons(quizData, index) {
-  quizData[index].answers.forEach(function (ans) {
+  quizData[index].answers.forEach(function (ans, correctIndex) {
     var ansbutton = document.createElement("button");
     ansbutton.classList.add("answerButton");
     ansbutton.textContent = ans.text;
@@ -118,7 +105,7 @@ function createAnswerButtons(quizData, index) {
   });
 }
 
-function createNextButton(quizType, quizData, index, answerDiv, mainDiv) {
+function createNextButton(quizData, index, answerDiv, mainDiv) {
   var nextButton = document.createElement("button");
   nextButton.classList.add("next");
   nextButton.textContent = "Next";
@@ -135,34 +122,30 @@ function createNextButton(quizType, quizData, index, answerDiv, mainDiv) {
     mainDiv.removeChild(answerDiv);
     index++;
     if (index < quizData.length) {
-      renderQuestion(quizType, index);
-      renderAnswer(quizType, index);
-      navigate(`/showCategory/${quizType}/${quizData[index].id}`);
+      renderQuestion(quizData, index);
+      renderAnswer(quizData, index);
     } else {
-      renderQuestion(quizType, index);
-      renderAnswer(quizType, index);
+      renderQuestion(quizData, index);
+      renderAnswer(quizData, index);
     }
   });
 }
 
-function createPreviousButton(quizType, quizData, index, answerDiv, mainDiv) {
+function createPreviousButton(quizData, index, answerDiv, mainDiv) {
   var previousButton = document.createElement("Button");
   previousButton.classList.add("previousButton");
   previousButton.textContent = "PREVIOUS";
   answerDiv.appendChild(previousButton);
-
   if (index === 0) {
     previousButton.style.display = "none";
   } else {
     previousButton.style.display = "inline-block";
   }
-
   previousButton.addEventListener("click", function () {
     mainDiv.removeChild(answerDiv);
     index--;
-    renderQuestion(quizType, index);
-    renderAnswer(quizType, index);
-    navigate(`/showCategory/${quizType}/${quizData[index].id}`);
+    renderQuestion(quizData, index);
+    renderAnswer(quizData, index);
   });
 }
 
@@ -172,25 +155,4 @@ function addSelectedClass(clickedButton) {
     button.classList.remove("selected");
   });
   clickedButton.classList.add("selected");
-}
-
-export function renderQuiz(quizType) {
-  renderMainDiv();
-  renderQuestion(quizType, 0);
-  renderAnswer(quizType, 0);
-  currentQuiz = quizType;  
-}
-
-export function renderQuizQuestion(quizType, questionId) {
-  const quizData = quizDataMap[quizType];
-  const questionIndex = quizData.findIndex(q => q.id === questionId);
-  if (questionIndex >= 0) {
-    renderMainDiv();
-    renderQuestion(quizType, questionIndex);
-    renderAnswer(quizType, questionIndex);
-    currentQuiz = quizType;  
-    currentIndex = questionIndex;  
-  } else {
-    document.getElementById('app').innerHTML = '<h1>Question Not Found</h1>';
-  }
 }

@@ -43,6 +43,7 @@ export function frontHeader() {
         navigate('/showCategory');
     });
 }
+
 export function showCategory() {
     var appDiv = document.getElementById('app');
     appDiv.innerHTML = renderQuizList();
@@ -51,9 +52,11 @@ export function showCategory() {
         navigate('/showCategory/scienceQuiz');
     });
 
+
     document.querySelector('.box2').addEventListener('click', function () {
         navigate('/showCategory/worldQuiz');
     });
+
 
     document.querySelector('.box3').addEventListener('click', function () {
         navigate('/showCategory/GeographyQuiz');

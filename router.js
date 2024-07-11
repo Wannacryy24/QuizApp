@@ -1,9 +1,10 @@
 import { showCategory } from './frontPage.js';
+import { frontHeader } from './frontPage.js';
 import { renderMainDiv, renderQuestion, renderAnswer, worldData, geographyData, VocabularyData, scienceData } from './Quiz.js';
 import { renderQuiz, renderQuizQuestion } from './Quiz.js';
 const routes = {
+    '/': frontHeader,
     '/showCategory': showCategory,
-
     '/showCategory/worldQuiz': function() {
         renderQuiz('worldQuiz');
     },
@@ -48,6 +49,7 @@ function getRoutes() {
     }
     return routes[path] || (() => '<h1>404 Not Found</h1>');
 }
+
 
 export function router() {
     const view = getRoutes();

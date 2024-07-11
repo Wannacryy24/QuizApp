@@ -8,7 +8,7 @@ export function frontHeader() {
                                     <p>Trivia Quiz<span class="byMayank"> by Mayank Verma</span></p>
                                     <li><a href="" class='homeAnchor'>Home</a></li>
                                     <li class='leaderboardLi'><a href="#">Leaderboards</a></li>
-                                    <li class='aboutLi'><a href="#">About</a></li>
+                                    <li class='aboutLi'><a href="https://mayankvermaportfolio.netlify.app/" target='_blank'>About me</a></li>
                                     <li><a href="javascript:void(0)" class='quizListAnchor'>Quiz Lists</a></li>
                                 </div>
                             </header>

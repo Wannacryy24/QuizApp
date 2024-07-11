@@ -32,7 +32,6 @@ export function frontHeader() {
                                 </div>
                             </div>`;
     document.getElementById('app').innerHTML = frontPageContent;
-
     var playNowButton = document.querySelector(".playNow-button");
     playNowButton.addEventListener("click", function (event) {
         navigate('/showCategory');
@@ -62,4 +61,9 @@ export function showCategory() {
     document.querySelector('.box4').addEventListener('click', function () {
         navigate('/showCategory/VocabularyQuiz');
     });
+
+    document.querySelector('.homeAnchor').addEventListener('click', function () {
+        navigate('/');
+    });
+
 }

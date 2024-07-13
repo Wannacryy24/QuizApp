@@ -1,16 +1,8 @@
 export function renderQuizList() {
-    return `<header class="frontHeader">
-                <div class='leftHeader'>
-                    <p>Trivia Quiz<span class="byMayank"> by Mayank Verma</span></p>
-                    <li><a href="#" class='homeAnchor'>Home</a></li>
-                    <li class='leaderboardLi'><a href="#">Leaderboards</a></li>
-                    <li class='aboutLi'><a href="https://mayankvermaportfolio.netlify.app/" target='_blank'>About me</a></li>
-                    <li><a href="javascript:void(0)" class='quizListAnchor'>Quiz Lists</a></li>
-                </div>
-            </header>
+    return `
             <div class="contentWrapper">     
                 <div class="interestDiv">
-                    <h2 class="interest">Select From The List Of Quizzes</h2>
+                    <h2 class="interest">Interesting Quizes Awaits You</h2>
                 </div>
                 <div class='displayListsMainDiv'>
                     <div class="box1">

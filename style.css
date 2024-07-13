@@ -11,37 +11,9 @@ header {
   position: relative;
 }
 
-header::before,
-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  width: calc(100% - 20px); 
-  border-bottom: 2px solid black;
-}
-
-header::before {
-  left: 10px; 
-}
-
-header::after {
-  right: 10px; /* 10px from the right */
-}
-
-.leftHeader, .rightHeader {
-  display: flex;
-  padding: 2rem;
-}
-
 .homeAnchor {
   text-decoration: none;
   color: #5f9dee;
-}
-
-.leftHeader p, .rightHeader p {
-  font-size: 3rem;
-  color: rgb(0, 0, 0);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .leftHeader li, .rightHeader li {
@@ -61,6 +33,7 @@ header::after {
   background-color: #ecf3fb;
   width: 100vw;
 }
+
 
 .leftDivOfFrontHeaderMainDiv, .rightDivOfFrontHeaderMainDiv {
   width: 50%;
@@ -145,28 +118,64 @@ header::after {
   flex-direction: column;
   width: 100%;
   height: 100%;
+  background-color: #ecf3fb;
 }
 
 /* ==================================Front HEADER PAge ENDS ===============================*/
 
 .mainDiv {
-  left: 20vw;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  align-items: center;
-  position: relative;
-  top: 10vh;
   background-color: #f2f7f7;
-  height: 50vh;
+  height: 60vh;
   width: 60vw;
   border: 1px solid rgb(193, 227, 244);
   border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+
+.outerDiv{
+  /* position: absolute; */
+  height: 15rem;
+  width: 15rem;
+  background-color: #0d3f70dd;
+  border-radius:50%;
+  padding: 1rem;
+  color: #320bf3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* left: calc(30%); */
+}
+
+
+
+.scoreCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 12rem;
+  width: 12rem;
+  border-radius:50%;
+  padding: 1rem;
+  color: #ffffff;
+  font-size: 2rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #667b9784;
+}
 .questionDiv {
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
   font-size: 2rem;
-  background-color: #9d9a9a;
+  background-color: #94a8bc6f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -174,6 +183,7 @@ header::after {
   height: 30%;
   width: 100%;
   border-bottom: 0.5px solid rgb(193, 227, 244);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .answerDiv {
@@ -184,6 +194,8 @@ header::after {
   width: 100%;
   padding: 2%;
   justify-content: center;
+  
+  
 }
 
 .answerButton {
@@ -300,16 +312,17 @@ header {
 }
 
 .interest {
-  margin-left: 0;
-  color: #87657d;
+  display: inline;
+  color: #59768e;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .interestDiv {
   display: flex;
   justify-content: center;
-  display: block;
+  align-items: center;
+  /* display: block; */
   width: 100%;
   height: 7vh;
   margin: 50px;
@@ -333,9 +346,11 @@ header {
   border-radius: 2rem;
   flex: 1 0 20%;
   box-sizing: border-box; 
-  border: solid;
+  /* border: solid; */
+  border: .5px solid rgb(250, 250, 250);
   margin: 10px;
   text-align: center;
+
 }
 
 .displayListsMainDiv div img {
@@ -353,6 +368,7 @@ header {
   height: 40%;
   padding: 20px;
 }
+
 
 .geoQuizTitleDiv > p {
   font-size: 1.5rem;
@@ -372,7 +388,9 @@ header {
   border-radius: 25px; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* transition: background-color 0.3s ease, transform 0.3s ease;
+   */
+   transition: background-color 0.3s ease, transform 0.3s cubic-bezier(1, -1.82, 0, 2.41);
 }
 .next:hover, .previousButton:hover {
   background-color: rgb(50, 50, 200); 
@@ -396,7 +414,9 @@ header {
 }
 
 .answerButton:hover {
-  background-color: rgba(95, 157, 238, 0.2);
+   background-color: rgba(95, 157, 238, 0.2);
+   
+   /* background-color: #9ff0c9; */
   transform: translateY(-3px); 
 }
 
@@ -408,17 +428,7 @@ header {
 }
 
 
-
-@media only screen and (max-width: 600px) {
-  .answerButton {
-    font-size: 0.7rem;
-    padding: 5px 14px; 
-  }
-}
-
-
 header {
-  
   position: relative;
   background-color: transparent;
   display: flex;
@@ -427,25 +437,13 @@ header {
   padding: 1rem 2rem; /* Adjust padding for better spacing */
   height: 12vh;
   color: rgb(235, 233, 233);
+  
 }
 
-header::before,
-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  width: calc(100% - 20px);
-  border-bottom: 2px solid black;
+.headerTag{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* background-color: #ecf3fb; */
 }
-
-header::before {
-  left: 10px;
-}
-
-header::after {
-  right: 10px;
-}
-
 .leftHeader, .rightHeader {
   display: flex;
   align-items: center;
@@ -466,12 +464,6 @@ header::after {
   color: #5f9dee;
 }
 
-.leftHeader p, .rightHeader p {
-  font-size: 3rem;
-  color: rgb(0, 0, 0);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
 .leftHeader li, .rightHeader li {
   padding-left: 40px;
   font-size: 1.3rem;
@@ -481,11 +473,67 @@ header::after {
 .leftHeader li a, .rightHeader li a {
   color: #5f9dee;
 }
+
+
+.scoreSpan{
+  font-size:3rem;
+  color: #f0ee9f;
+}
+
+.animate__tada{
+  animation: bounce; 
+  animation-duration: 2s;
+}
+
 .interest {
-  font-family: "Bona Nova SC", serif;
+  font-family: "Cairo Play", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style:oblique ;
+  font-variation-settings:
+    "slnt" ;
+}
+
+
+.triviaQuiz{
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
+    font-size: 4rem;
 }
+
+
+
+
+
+body {
+  color: #2D3748;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #5A67D8; 
+}
+
+.leftHeader li a{
+  color: #ecf3fb;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -493,18 +541,34 @@ header::after {
 /* Media queries for responsiveness */
 
 @media only screen and (max-width: 600px) {
+  * {
+    box-sizing: border-box;
+}
+
+  .answerButton {
+    font-size: 0.7rem;
+    padding: 5px 14px; 
+  }
   .byMayank{
     display: none;
   }
-  .leftHeader p {
-    font-size: 1.2rem;
+  .leftHeader{
+    flex: none;
   }
   .interest {
     width: 100%;
   }
+  .interestDiv{
+    display: inline-block;
+    height: 10vh;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+  }
   .interestDiv h2 {
     width: 80%;
-    font-size: 2rem;
+    font-size: 1.8rem;
+    
   }
   .displayListsMainDiv {
     flex-direction: column;
@@ -556,37 +620,59 @@ header::after {
     display: flex;
     flex-direction: column;
   }
-  .imagePng img{
-    /* display: none; */
+  .frontHeader{
+    width: 100vw;
   }
-
-.playNow-button {
+  .playNow-button {
     margin-top: 20px;
     width: 8rem;
     padding: 1rem;
-
-}
-@media only screen and (max-width: 600px) {
+  }
   .imagePng {
     order: 3; 
     text-align: center; 
   }
-.frontHeaderMainDiv{
-  display: flex;
-  flex-direction: column-reverse;
-  /* background-color: #00c; */
-}
-.leftDivOfFrontHeaderMainDiv{
-  position: absolute;
-  top: 45%;
-  width: 80%;
-}
+  .frontHeaderMainDiv{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .leftDivOfFrontHeaderMainDiv{
+    position: absolute;
+    top: 45%;
+    width: 80%;
+  }
   .playNow-button {
     order: 4; 
     margin-top: 20px;
     width: 8rem;
     padding: 1rem;
   }
+  header{
+    padding: 2vw;
+   }
+   .leftHeader li{
+    position: relative;
+    top: -1.5vh;
+    /* display: flex; */
+  }
+  
+ .interest{
+  color: #0073e6;
+  font-size: 2px;
+ }  
+ .outerDiv{
+  width: 40vw;
+  height: 40vw;
+ }
+  .scoreCard{
+    width: 30vw;
+    height: 30vw;
+    font-size: medium;
+  }
+  .scoreSpan {
+    font-size: medium;
+  }
+  header {
+    padding: 0vw;
 }
-
 }

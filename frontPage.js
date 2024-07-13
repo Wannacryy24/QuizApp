@@ -3,15 +3,7 @@ import { renderQuestion, renderAnswer, renderMainDiv, worldData, scienceData, ge
 import { navigate } from "./router.js";
 
 export function frontHeader() {
-    var frontPageContent = `<header class="frontHeader">
-                                <div class='leftHeader'>
-                                    <p>Trivia Quiz<span class="byMayank"> by Mayank Verma</span></p>
-                                    <li><a href="" class='homeAnchor'>Home</a></li>
-                                    <li class='leaderboardLi'><a href="#">Leaderboards</a></li>
-                                    <li class='aboutLi'><a href="https://mayankvermaportfolio.netlify.app/" target='_blank'>About me</a></li>
-                                    <li><a href="javascript:void(0)" class='quizListAnchor'>Quiz Lists</a></li>
-                                </div>
-                            </header>
+    var frontPageContent = `
                             <div class="frontHeaderMainDiv">    
                                 <div class="leftDivOfFrontHeaderMainDiv">
                                     <div class='lets-Start-text'>
@@ -38,10 +30,10 @@ export function frontHeader() {
     });
     document.querySelector('.quizListAnchor').addEventListener('click', function (event) {
         event.preventDefault();
-        // showCategory();
         navigate('/showCategory');
     });
 }
+
 export function showCategory() {
     var appDiv = document.getElementById('app');
     appDiv.innerHTML = renderQuizList();

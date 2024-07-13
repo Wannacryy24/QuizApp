@@ -96,8 +96,21 @@ function renderAnswer(quizType, index) {
     createNextButton(quizType, quizData, index, answerDiv, mainDiv);
 
     createPreviousButton(quizType, quizData, index, answerDiv, mainDiv);
-  } else {
-    answerDiv.textContent = "Your Score IS:" + score;
+    if(index == quizData.length-1){
+      var previousButton = document.querySelector('.previousButton');
+      // console.log(previousButton);
+      // previousButton.remove();
+      var nextButton = document.querySelector('.next');
+      nextButton.textContent = 'Finish';
+      nextButton.style.color = 'pink';
+    }
+  } 
+  
+  else {
+    var questionDiv =document.querySelector('.questionDiv');
+    questionDiv.remove();
+    answerDiv.classList.remove('answerDiv')
+    answerDiv.innerHTML = `<div class='outerDiv animate__tada'> <div class='scoreCard animate__tada'>Your Score <span class='scoreSpan'>${score}/${quizData.length}</span></div></div>`;
   }
 }
 
@@ -148,7 +161,7 @@ function createNextButton(quizType, quizData, index, answerDiv, mainDiv) {
 function createPreviousButton(quizType, quizData, index, answerDiv, mainDiv) {
   var previousButton = document.createElement("Button");
   previousButton.classList.add("previousButton");
-  previousButton.textContent = "PREVIOUS";
+  previousButton.textContent = "Previous";
   answerDiv.appendChild(previousButton);
 
   if (index === 0) {

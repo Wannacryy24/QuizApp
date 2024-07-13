@@ -675,4 +675,7 @@ header {
   header {
     padding: 0vw;
 }
+.triviaQuiz{
+  font-size: 1.8rem !important;
+}
 }

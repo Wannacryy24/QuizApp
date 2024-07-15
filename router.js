@@ -43,7 +43,6 @@ function getRoutes() {
     const match = path.match(/\/showCategory\/(worldQuiz|scienceQuiz|GeographyQuiz|VocabularyQuiz)(?:\/(.+))?/);
     const quiz = match ? match[1] : null;
     const questionId = match ? match[2] : null;
-
     if (quiz && questionId) {
         return () => routes[`/showCategory/${quiz}/:questionId`](questionId);
     }

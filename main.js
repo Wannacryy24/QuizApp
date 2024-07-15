@@ -1,7 +1,7 @@
 import './style.css';
 import { frontHeader } from "./frontPage.js";
 import { router } from './router.js';
-
+import { navigate } from './router.js';
 document.addEventListener('DOMContentLoaded', function () {
     console.log("DOM fully loaded");
     frontHeader();
@@ -22,3 +22,6 @@ headerDiv.innerHTML = `<header class="frontHeader">
                             </header>`;
 }
 header();
+document.querySelector('.homeAnchor').addEventListener('click', function () {
+    navigate('/');
+});

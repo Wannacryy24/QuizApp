@@ -15,7 +15,7 @@ export function frontHeader() {
                                     <div class='get-ready-text'>
                                         <p>Get ready for an epic journey filled with exciting challenges and mind-boggling questions. whether you're a casual player or professional quiz master, there's always something new to discover!</p>
                                     </div>
-                                    <button class='playNow-button'>Play Now</button>
+                                    <button class='playNow-button animate__heartBeat animate__animated animate__repeat'>Play Now</button>
                                 </div>
                                 <div class="rightDivOfFrontHeaderMainDiv">
                                     <div class='imagePng'>
@@ -39,23 +39,46 @@ export function showCategory() {
     appDiv.innerHTML = renderQuizList();
     
     document.querySelector('.box1').addEventListener('click', function () {
-        navigate('/showCategory/scienceQuiz');
+        // navigate('/showCategory/scienceQuiz');
+        startCountDown(`scienceQuiz`);
     });
 
     document.querySelector('.box2').addEventListener('click', function () {
-        navigate('/showCategory/worldQuiz');
+        startCountDown('worldQuiz');
+        // navigate('/showCategory/worldQuiz');
     });
 
     document.querySelector('.box3').addEventListener('click', function () {
-        navigate('/showCategory/GeographyQuiz');
+        startCountDown('GeographyQuiz')
+        // navigate('/showCategory/GeographyQuiz');
     });
 
     document.querySelector('.box4').addEventListener('click', function () {
-        navigate('/showCategory/VocabularyQuiz');
+        startCountDown('VocabularyQuiz')
+        // navigate('/showCategory/VocabularyQuiz');
     });
 
     document.querySelector('.homeAnchor').addEventListener('click', function () {
         navigate('/');
     });
+}
 
+function startCountDown(quiz){
+    var appDiv = document.querySelector('#app')
+    console.log(appDiv);
+    appDiv.innerHTML = `<div class= 'quizTimertext'>Quiz Starts in</div><div class='countdown'>3</div>`
+    let countDown = 3 ;
+    var x = setInterval(function(){
+        countDown--;
+        if(countDown>=0){
+            document.querySelector('.countdown').textContent = countDown;
+            if(countDown ==0){
+                document.querySelector('.quizTimertext').innerHTML='';
+                document.querySelector('.countdown').textContent = 'Quiz Begins...';
+            }
+        }else{
+            clearInterval(x);
+            navigate(`/showCategory/${quiz}`);
+        }
+    },1000);
 }

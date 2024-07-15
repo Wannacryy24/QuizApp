@@ -1,5 +1,6 @@
 export { renderQuestion, renderAnswer, renderMainDiv, worldData, scienceData ,geographyData ,VocabularyData};
 import { navigate } from "./router";
+
 const worldData = [
   {id:'world1',question: "What is the capital of France?",answers: [{ text: "Paris", correct: true },{ text: "London", correct: false },{ text: "Rome", correct: false },{ text: "Berlin", correct: false },],},
   {id:'world2',question: "Who wrote 'Hamlet'?", answers: [{ text: "William Shakespeare", correct: true },{ text: "Charles Dickens", correct: false },{ text: "J.K. Rowling", correct: false },{ text: "Leo Tolstoy", correct: false },],},
@@ -49,6 +50,40 @@ var VocabularyData=[
       {id:'vocabulary11', question: "The audience roared with laughter as the comedian delivered his hilarious jokes. What was the reaction of the audience?", answers: [ { text: "They were bored and silent", correct: false }, { text: "They were confused", correct: false }, { text: "They found it very funny", correct: true }, { text: "They left the theater", correct: false }, ], }
 ];
 
+const computerData = [
+  {
+    quizTitle: "Basic Computer Quiz",
+    questions: [
+      {
+        question: "What does CPU stand for?",
+        options: ["Central Processing Unit", "Computer Personal Unit", "Central Processor Unit", "Control Processing Unit"],
+        answer: "Central Processing Unit"
+      },
+      {
+        question: "What is the main function of the RAM?",
+        options: ["To store data permanently", "To store data temporarily", "To process data", "To handle input/output operations"],
+        answer: "To store data temporarily"
+      }
+    ]
+  },
+  {
+    quizTitle: "Advanced Computer Quiz",
+    questions: [
+      {
+        question: "Which programming language is known as the backbone of web development?",
+        options: ["Python", "Java", "JavaScript", "C++"],
+        answer: "JavaScript"
+      },
+      {
+        question: "What is the time complexity of binary search?",
+        options: ["O(n)", "O(log n)", "O(n^2)", "O(1)"],
+        answer: "O(log n)"
+      }
+    ]
+  }
+];
+
+
 const quizDataMap = {
   worldQuiz: worldData,
   scienceQuiz: scienceData,
@@ -61,6 +96,7 @@ var selectedAnswers = [];
 var currentQuiz = '';
 var currentIndex = 0;
 
+
 function renderMainDiv() {
   var appDiv = document.querySelector("#app");
   appDiv.innerHTML = "";
@@ -72,11 +108,13 @@ function renderMainDiv() {
   mainDiv.appendChild(questionDiv);
 }
 
+
 function renderQuestion(quizType, index) {
   var quizData = quizDataMap[quizType];
   var questionDiv = document.querySelector(".questionDiv");
   if (index < quizData.length) {
-    questionDiv.textContent = quizData[index].question;
+    
+    questionDiv.textContent = `Q${index+1}) ${quizData[index].question}`;
   } else {
     questionDiv.textContent = ``;
   }
